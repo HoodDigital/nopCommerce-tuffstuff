@@ -1,9 +1,11 @@
 ﻿using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Services.Catalog;
+using Nop.Services.Configuration;
 using Nop.Services.Customers;
 using Nop.Services.Logging;
 using Nop.Services.ScheduleTasks;
+using Nop.Services.Stores;
 
 namespace Nop.Services.Orders;
 
@@ -16,8 +18,9 @@ public partial class AutoCancelOrdersTask : IScheduleTask
     protected readonly IOrderProcessingService _orderProcessingService;
     protected readonly IOrderService _orderService;
     protected readonly IProductService _productService;
+    protected readonly ISettingService _settingService;
     protected readonly IShoppingCartService _shoppingCartService;
-    protected readonly OrderSettings _orderSettings;
+    protected readonly IStoreService _storeService;
 
     #endregion
 
@@ -28,16 +31,18 @@ public partial class AutoCancelOrdersTask : IScheduleTask
         IOrderProcessingService orderProcessingService,
         IOrderService orderService,
         IProductService productService,
+        ISettingService settingService,
         IShoppingCartService shoppingCartService,
-        OrderSettings orderSettings)
+        IStoreService storeService)
     {
         _customerService = customerService;
         _logger = logger;
         _orderProcessingService = orderProcessingService;
         _orderService = orderService;
         _productService = productService;
+        _settingService = settingService;
         _shoppingCartService = shoppingCartService;
-        _orderSettings = orderSettings;
+        _storeService = storeService;
     }
 
     #endregion
@@ -49,48 +54,63 @@ public partial class AutoCancelOrdersTask : IScheduleTask
     /// </summary>
     public virtual async Task ExecuteAsync()
     {
-        if (!_orderSettings.AutoCancelEnabled)
-            return;
-
-        var orders = await _orderService.SearchOrdersAsync(
-            psIds: [(int)PaymentStatus.Pending],
-            createdToUtc: DateTime.UtcNow.AddMinutes(-_orderSettings.AutoCancelDelay));
-
-        var ordersToCancel = orders
-            .Where(_orderProcessingService.CanCancelOrder)
-            .Where(o => !_orderSettings.AutoCancelIgnoredPaymentMethods.Contains(o.PaymentMethodSystemName))
-            .GroupBy(o => o.CustomerId, o => o)
-            .Select(g => g.OrderByDescending(o => o.CreatedOnUtc).First())
-            .ToList();
-
-        foreach (var order in ordersToCancel)
+        var stores = await _storeService.GetAllStoresAsync();
+        foreach (var store in stores)
         {
-            await _orderProcessingService.CancelOrderAsync(order, true);
+            var orderSettings = await _settingService.LoadSettingAsync<OrderSettings>(store.Id);
 
-            if (!_orderSettings.AutoCancelRestoreShoppingCart)
+            if (!orderSettings.AutoCancelEnabled)
                 continue;
 
-            var customer = await _customerService.GetCustomerByIdAsync(order.CustomerId);
+            var orders = await _orderService.SearchOrdersAsync(
+                storeId: store.Id,
+                psIds: [(int)PaymentStatus.Pending],
+                osIds: [(int)OrderStatus.Pending, (int)OrderStatus.Processing],
+                createdFromUtc: orderSettings.AutoCancelIgnoreBeforeUtc,
+                createdToUtc: DateTime.UtcNow.AddMinutes(-orderSettings.AutoCancelDelay));
 
-            foreach (var item in await _orderService.GetOrderItemsAsync(order.Id))
+            var ordersToCancel = orders
+                .Where(_orderProcessingService.CanCancelOrder)
+                .Where(o => !orderSettings.AutoCancelIgnoredPaymentMethods.Contains(o.PaymentMethodSystemName))
+                .GroupBy(o => o.CustomerId, o => o)
+                .Select(g => new { CustomerId = g.Key, Orders = g.OrderByDescending(o => o.CreatedOnUtc).ToList() })
+                .ToList();
+
+            foreach (var customerOrders in ordersToCancel)
             {
-                var product = await _productService.GetProductByIdAsync(item.ProductId);
+                var customer = await _customerService.GetCustomerByIdAsync(customerOrders.CustomerId);
+                var shoppingCartIsRestored = false;
 
-                if (product.Deleted)
-                    continue;
+                foreach (var order in customerOrders.Orders)
+                {
+                    await _orderProcessingService.CancelOrderAsync(order, true);
 
-                var addToCartWarnings = await _shoppingCartService.AddToCartAsync(customer: customer,
-                    product: product,
-                    shoppingCartType: ShoppingCartType.ShoppingCart,
-                    storeId: order.StoreId,
-                    attributesXml: item.AttributesXml,
-                    rentalStartDate: item.RentalStartDateUtc,
-                    rentalEndDate: item.RentalEndDateUtc,
-                    quantity: item.Quantity,
-                    addRequiredProducts: false);
+                    if (!orderSettings.AutoCancelRestoreShoppingCart || shoppingCartIsRestored)
+                        continue;
 
-                if (addToCartWarnings?.Count > 0)
-                    await _logger.WarningAsync(addToCartWarnings.Aggregate((c, n) => c + Environment.NewLine + n));
+                    foreach (var item in await _orderService.GetOrderItemsAsync(order.Id))
+                    {
+                        var product = await _productService.GetProductByIdAsync(item.ProductId);
+
+                        if (product is null)
+                            continue;
+
+                        var addToCartWarnings = await _shoppingCartService.AddToCartAsync(customer: customer,
+                            product: product,
+                            shoppingCartType: ShoppingCartType.ShoppingCart,
+                            storeId: order.StoreId,
+                            attributesXml: item.AttributesXml,
+                            rentalStartDate: item.RentalStartDateUtc,
+                            rentalEndDate: item.RentalEndDateUtc,
+                            quantity: item.Quantity,
+                            addRequiredProducts: false);
+
+                        if (addToCartWarnings?.Count > 0)
+                            await _logger.WarningAsync(addToCartWarnings.Aggregate((c, n) => c + Environment.NewLine + n));
+                    }
+
+                    shoppingCartIsRestored = true;
+                }
             }
         }
     }

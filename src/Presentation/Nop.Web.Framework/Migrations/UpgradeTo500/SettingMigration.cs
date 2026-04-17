@@ -75,6 +75,7 @@ public class SettingMigration : MigrationBase
         this.SetSettingIfNotExists<OrderSettings, int>(settings => settings.AutoCancelDelay, 600);
         this.SetSettingIfNotExists<OrderSettings, List<string>>(settings => settings.AutoCancelIgnoredPaymentMethods, []);
         this.SetSettingIfNotExists<OrderSettings, bool>(settings => settings.AutoCancelRestoreShoppingCart, false);
+        this.SetSettingIfNotExists<OrderSettings, DateTime?>(settings => settings.AutoCancelIgnoreBeforeUtc, DateTime.UtcNow);
     }
 
     public override void Down()

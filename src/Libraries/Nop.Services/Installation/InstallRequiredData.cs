@@ -1803,6 +1803,7 @@ public partial class InstallationService
             AutoCancelDelay = 600,
             AutoCancelIgnoredPaymentMethods = [],
             AutoCancelRestoreShoppingCart = false,
+            AutoCancelIgnoreBeforeUtc = DateTime.UtcNow,
         });
 
         await SaveSettingAsync(dictionary, new SecuritySettings

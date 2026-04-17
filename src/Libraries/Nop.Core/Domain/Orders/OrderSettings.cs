@@ -222,4 +222,9 @@ public partial class OrderSettings : ISettings
     /// Gets or sets a value indicating whether an auto-canceled order should be added to the shopping cart
     /// </summary>
     public bool AutoCancelRestoreShoppingCart { get; set; }
+
+    /// <summary>
+    /// Gets or sets the UTC date and time before which orders are ignored by the automatic cancellation
+    /// </summary>
+    public DateTime? AutoCancelIgnoreBeforeUtc { get; set; }
 }
