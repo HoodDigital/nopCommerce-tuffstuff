@@ -519,7 +519,7 @@ public class LocalizationMigration : MigrationBase
             ["Admin.Configuration.Settings.Order.AutoCancelRestoreShoppingCart"] = "Put order back as shopping cart",
             ["Admin.Configuration.Settings.Order.AutoCancelRestoreShoppingCart.Hint"] = "Check this option to add auto-canceled orders back to the shopping cart.",
             ["Admin.Configuration.Settings.Order.Warning.NotFound"] = "Auto-cancel unpaid orders task not found",
-            ["Admin.Configuration.Settings.Order.Warning.TaskDisabled"] = "Auto-cancel unpaid orders task is disabled",
+            ["Admin.Configuration.Settings.Order.Warning.TaskDisabled"] = "Please remember <a href=\"{0}\" target=\"_blank\">to enable</a> the \"{1}\" scheduled task.",
         });
 
         #endregion

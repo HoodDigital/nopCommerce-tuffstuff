@@ -24,7 +24,8 @@ public class DataMigration : Migration
             _dataProvider.InsertEntity(new ScheduleTask()
             {
                 Name = "Auto-cancel unpaid orders",
-                Seconds = 600,
+                //60 minutes
+                Seconds = 3600,
                 Type = "Nop.Services.Orders.AutoCancelOrdersTask, Nop.Services",
                 Enabled = true,
                 LastEnabledUtc = DateTime.UtcNow,

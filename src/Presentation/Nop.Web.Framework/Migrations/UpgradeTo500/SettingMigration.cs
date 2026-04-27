@@ -72,7 +72,7 @@ public class SettingMigration : MigrationBase
 
         //#8120
         this.SetSettingIfNotExists<OrderSettings, bool>(settings => settings.AutoCancelEnabled, false);
-        this.SetSettingIfNotExists<OrderSettings, int>(settings => settings.AutoCancelDelay, 600);
+        this.SetSettingIfNotExists<OrderSettings, int>(settings => settings.AutoCancelDelay, 48 * 60);
         this.SetSettingIfNotExists<OrderSettings, List<string>>(settings => settings.AutoCancelIgnoredPaymentMethods, []);
         this.SetSettingIfNotExists<OrderSettings, bool>(settings => settings.AutoCancelRestoreShoppingCart, false);
         this.SetSettingIfNotExists<OrderSettings, DateTime?>(settings => settings.AutoCancelIgnoreBeforeUtc, DateTime.UtcNow);

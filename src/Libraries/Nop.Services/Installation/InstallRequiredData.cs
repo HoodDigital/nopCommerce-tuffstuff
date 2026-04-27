@@ -1800,7 +1800,7 @@ public partial class InstallationService
             PlaceOrderWithLock = false,
             CustomerOrdersPageSize = 10,
             AutoCancelEnabled = false,
-            AutoCancelDelay = 600,
+            AutoCancelDelay = 48 * 60,
             AutoCancelIgnoredPaymentMethods = [],
             AutoCancelRestoreShoppingCart = false,
             AutoCancelIgnoreBeforeUtc = DateTime.UtcNow,
@@ -3366,7 +3366,8 @@ public partial class InstallationService
                 new()
                 {
                     Name = "Auto-cancel unpaid orders",
-                    Seconds = 600,
+                    //60 minutes
+                    Seconds = 3600,
                     Type = "Nop.Services.Orders.AutoCancelOrdersTask, Nop.Services",
                     Enabled = true,
                     LastEnabledUtc = DateTime.UtcNow,

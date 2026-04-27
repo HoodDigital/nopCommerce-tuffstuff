@@ -1,4 +1,5 @@
-﻿using Nop.Core.Domain.Orders;
+﻿using System.Text;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
@@ -88,6 +89,8 @@ public partial class AutoCancelOrdersTask : IScheduleTask
                     if (!orderSettings.AutoCancelRestoreShoppingCart || shoppingCartIsRestored)
                         continue;
 
+                    var warnings = new StringBuilder();
+
                     foreach (var item in await _orderService.GetOrderItemsAsync(order.Id))
                     {
                         var product = await _productService.GetProductByIdAsync(item.ProductId);
@@ -106,8 +109,11 @@ public partial class AutoCancelOrdersTask : IScheduleTask
                             addRequiredProducts: false);
 
                         if (addToCartWarnings?.Count > 0)
-                            await _logger.WarningAsync(addToCartWarnings.Aggregate((c, n) => c + Environment.NewLine + n));
+                            warnings.AppendLine(addToCartWarnings.Aggregate((c, n) => c + Environment.NewLine + n));
                     }
+
+                    if (warnings.Length > 0)
+                        await _logger.WarningAsync($"Errors occurred during shopping cart restoration:{Environment.NewLine} {warnings}");
 
                     shoppingCartIsRestored = true;
                 }
