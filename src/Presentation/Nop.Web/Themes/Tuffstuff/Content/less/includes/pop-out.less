@@ -1,0 +1,35 @@
+﻿body {
+    .pop-out {
+        .transform(translateX(-100%));
+        .transition(all .6s ease-in-out);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 999;
+        background-color: @theme-dark;
+        color: white;
+        padding: 25px;
+
+        @media (min-width:@screen-sm) {
+            right: 50%;
+        }
+
+        h2 {
+            color: white;
+            margin-top: 0px;
+            margin-bottom: 25px;
+        }
+
+        .text-danger {
+            color: red;
+        }
+    }
+
+    .pop-out.open {
+        .transform(translateX(0));
+    }
+}

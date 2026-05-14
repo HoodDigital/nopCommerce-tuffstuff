@@ -1,0 +1,133 @@
+﻿﻿﻿﻿﻿.block {
+    background-color: lighten(@theme-light, 25%);
+    padding: 15px;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+    .title {
+        margin: -15px -15px 10px;
+        padding: 15px;
+        background: @theme-light;
+        color: white;
+
+        strong {
+            font-weight: normal;
+        }
+    }
+
+    .list {
+        margin: 0;
+        padding: 0 10px;
+
+        li {
+            padding: 3px 0 3px 15px;
+            list-style-type: none;
+        }
+
+        a {
+            display: inline-block;
+            position: relative;
+            padding: 0;
+            color: #444;
+            -webkit-transition: all 0.1s ease;
+            transition: all 0.1s ease;
+        }
+
+        a:before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: -10px;
+            width: 5px;
+            height: 5px;
+            background-color: #ddd;
+        }
+
+        .active > a {
+            color: @theme-dark;
+        }
+
+        a:hover {
+            color: darken(@theme-dark, 10%);
+        }
+    }
+
+    a.product-picture {
+        display: none;
+
+        :before {
+            display: none;
+        }
+    }
+
+    .sublist {
+        margin: 15px 0 5px;
+        padding-left: 0;
+    }
+
+    .view-all {
+        margin: 10px 0 0;
+
+        a {
+            display: block;
+            padding: 5px 15px;
+            color: #0b1838;
+            background: #6ca8c0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .tags {
+        margin: 5px 0 10px;
+
+        ul {
+            font-size: 0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        li {
+            display: inline-block;
+            position: relative;
+            margin: 0 10px;
+            overflow: hidden;
+            font-size: 17px !important; /*setting base size*/
+        }
+
+        li a {
+            float: left;
+            line-height: 30px;
+            color: #444;
+        }
+
+        li a:hover {
+            color: #4ab2f1;
+        }
+    }
+}
+
+.product-tags-all-page {
+    li {
+        display: inline-block;
+        position: relative;
+        margin: 0 10px;
+        overflow: hidden;
+        font-size: 17px !important; /*setting base size*/
+    }
+
+    li a {
+        float: left;
+        line-height: 30px;
+        color: #444;
+    }
+
+    li a:hover {
+        color: #4ab2f1;
+    }
+}

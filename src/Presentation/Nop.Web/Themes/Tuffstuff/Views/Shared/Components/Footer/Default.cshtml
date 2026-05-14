@@ -1,0 +1,71 @@
+﻿@model FooterModel
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+@inject IWorkContext workContext;
+<div class="footer">
+    <div class="container">
+        <div class="row row-center-md">
+            <div class="col-md-4 text-center-mobile">
+                <p>
+                    <strong>Tuffstuff Ltd.</strong><br />
+                    Nottingham, UK.
+                </p>
+            </div>
+            <div class="col-md-7 col-md-offset-1">
+                <div class="row row-center-sm">
+                    <div class="col-sm-5 col-sm-offset-2 text-center-mobile">
+                        <ul>
+                            <li><a href="/leads">Leads</a></li>
+                            <li><a href="/collars">Collars</a></li>
+                            <li><a href="/other-items">Other Items</a></li>
+                            <li><a href="/shows">Our Shows</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-5 text-center-mobile">
+                        <ul>
+                            @if (Model.DisplayCustomerInfoFooterItem)
+                            {
+                                <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                            }
+                            @if (Model.DisplayCustomerOrdersFooterItem)
+                            {
+                                <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
+                            }
+                            @if (Model.DisplayCustomerAddressesFooterItem)
+                            {
+                                <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
+                            }
+                            @if (Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem)
+                            {
+                                <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center-mobile">
+                <div>
+                    <span>Company No 04181672, Registered in England &amp; Wales</span>
+                </div>
+                @if (!Model.HidePoweredByNopCommerce)
+                {
+                    <div class="footer-powered-by">
+                        Powered by <a href="https://www.nopcommerce.com/">nopCommerce</a>. <a href="https://hooddigital.com/">Website Designed &amp; Built by Hood</a>.
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 text-center-mobile">
+                <p>
+                    <span>&copy; Copyright 2019 Tuffstuff Ltd. All rights reserved.</span>
+                    <span><a href="/privacy">Privacy Policy</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

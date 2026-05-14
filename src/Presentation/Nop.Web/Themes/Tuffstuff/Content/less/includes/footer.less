@@ -1,0 +1,117 @@
+﻿body {
+    div.footer {
+        background-color: @theme-color;
+        color: white;
+        padding: 20px 0;
+
+        .links {
+            text-align: center;
+            margin-bottom: 50px;
+
+            @media (min-width:@screen-sm) {
+                text-align: left;
+            }
+
+            @media (min-width:@screen-md) {
+                margin-bottom: 0px;
+            }
+        }
+
+        .contact {
+            text-align: center;
+
+            @media (min-width:@screen-md) {
+                text-align: right;
+            }
+        }
+
+        a {
+            color: white;
+
+            &:hover {
+                color: @theme-light;
+            }
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                padding: 1px 0;
+                list-style-type: none;
+
+                a {
+                    font-weight: bold;
+                    position: relative;
+                    display: inline-block;
+
+                    span.coming-soon {
+                        position: absolute;
+                        left: -40px;
+                        font-size: 10px;
+                        width: 80px;
+                        transform: rotate(-13deg);
+                        background: @theme-color;
+                        border-radius: 3px;
+                        color: white;
+                        opacity: .4;
+                        text-align: center;
+                        top: -4px;
+                    }
+                }
+            }
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .btn-arrow {
+            width: 50%;
+            display: block;
+            margin: 25px auto 0;
+
+            @media (min-width:@screen-md) {
+                width: 100%;
+            }
+        }
+    }
+
+    div.copyright {
+        background-color: @theme-dark;
+        padding: 30px 0;
+        color: white;
+
+        span {
+            display: block;
+        }
+
+        a {
+            color: white;
+
+            &:hover {
+                color: @theme-light;
+            }
+        }
+
+
+        i {
+            display: none;
+
+            @media (min-width:@screen-md) {
+                display: inline-block;
+            }
+        }
+    }
+
+    @media (min-width:@screen-sm) {
+        ﻿footer {
+            .copyright {
+                .socials {
+                    float: right;
+                }
+            }
+        }
+    }
+}

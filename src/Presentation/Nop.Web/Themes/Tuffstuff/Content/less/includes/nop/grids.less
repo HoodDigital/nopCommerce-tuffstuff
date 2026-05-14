@@ -1,0 +1,309 @@
+﻿﻿body {
+
+    .product-selectors {
+        margin-bottom: 15px;
+
+        &:before, &:after {
+            content: " ";
+            display: table;
+        }
+
+        &:after {
+            clear: both;
+        }
+
+        .product-sorting {
+            text-align: right;
+
+            .form-control {
+                width: auto;
+                display: inline-block;
+                font-size: 12px;
+                padding: 4px 1px;
+                height: auto;
+            }
+        }
+    }
+
+
+    .category-grid,
+    .product-grid {
+
+        .item-grid {
+            text-align: center;
+            font-size: 0;
+
+            .item-box {
+                display: inline-block;
+                overflow: hidden;
+                position: relative;
+                margin-bottom: 25px;
+                width: 100%;
+
+                @media (min-width:@screen-md) {
+                    width: 31.33%;
+                    margin-right: 1%;
+
+                    &:nth-of-type(3n) {
+                        margin-right: 0%;
+                    }
+                }
+
+                .picture {
+                    position: relative;
+
+                    a {
+                        width: 100%;
+                        display: block;
+                        background-color: white;
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-image: url('/themes/sherwood/content/images/no-image.jpg');
+
+                        &:after {
+                            content: '';
+                            display: block;
+                            padding-top: 65%;
+                            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 100%); /* FF3.6-15 */
+                            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.15) 100%); /* Chrome10-25,Safari5.1-6 */
+                            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.15) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#ef000000',GradientType=0 ); /* IE6-9 */
+                        }
+
+                        img {
+                            display: none;
+                        }
+                    }
+                }
+
+                .product-rating-box {
+                    display: block;
+                    margin: 5px 0;
+                    position: absolute;
+                    bottom: 7px;
+                    width: 100%;
+
+                    .rating {
+                        background: url('/themes/tuffstuff/content/images/rating1.png') repeat-x;
+                        width: 95px;
+                        height: 14px;
+                        margin: auto;
+
+                        div {
+                            background: url('/themes/tuffstuff/content/images/rating2.png') repeat-x;
+                            height: 14px;
+                        }
+                    }
+                }
+
+
+                h2.title {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    margin: 0;
+                    z-index: 1;
+                    color: white;
+                    font-size: 20px;
+
+                    a {
+                        color: white;
+                    }
+                }
+            }
+
+            &.owl-carousel {
+                margin-bottom: 50px;
+
+                .item-box {
+                    width: 100%;
+                    margin: auto;
+
+                    .picture a {
+                        &:after {
+                            content: '';
+                            display: block;
+                            padding-top: 65%;
+                            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 100%); /* FF3.6-15 */
+                            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.15) 100%); /* Chrome10-25,Safari5.1-6 */
+                            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.15) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#ef000000',GradientType=0 ); /* IE6-9 */
+                        }
+                    }
+
+                    h2.title {
+                        text-align: center;
+                        right: 0;
+                        bottom: 25px;
+                        font-size: 30px;
+                    }
+                }
+            }
+        }
+    }
+
+    .product-grid {
+        .item-grid {
+            .item-box {
+                .product-item {
+                    .details {
+                        background-color: white;
+                        font-size: 14px;
+                        padding: 15px;
+                    }
+
+                    .buttons {
+                        margin-top: 2em;
+                    }
+
+                    .add-info {
+                    }
+
+                    .prices {
+                        background: @theme-color;
+                        z-index: 1;
+                        position: relative;
+                        color: white;
+                        text-align: center;
+
+                        span.price {
+                            display: inline-block;
+                            padding: 7px 15px;
+                            font-weight: bold;
+                            margin: 0px 0;
+                            color: white;
+                            font-size: 22px;
+                        }
+                    }
+
+                    h2.product-title {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 100%;
+                        color: black;
+                        margin-top: 0;
+
+                        a {
+                            font-size: 18px;
+                            color: black;
+                        }
+                    }
+
+                    .description {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
+                        line-height: 1.7em;
+                        height: 4.7em;
+                    }
+                }
+            }
+        }
+    }
+
+    .category-grid {
+        .item-grid {
+            .item-box {
+                width: 49%;
+                margin-right: 1%;
+                margin-bottom: 1%;
+
+                &:nth-of-type(3n) {
+                    margin-right: 1%;
+                }
+
+                &:nth-of-type(2n) {
+                    margin-right: 0%;
+                }
+
+                @media (min-width:@screen-md) {
+                    width: 24%;
+                    margin-right: 1%;
+                    margin-bottom: 0;
+
+                    &:nth-of-type(3n) {
+                        margin-right: 1%;
+                    }
+
+                    &:nth-of-type(2n) {
+                        margin-right: 1%;
+                    }
+
+                    &:nth-of-type(4n) {
+                        margin-right: 0%;
+                    }
+                }
+
+                .picture a {
+                    background-size: cover;
+
+
+                    &:after {
+                        content: '';
+                        display: block;
+                        padding-top: 65%;
+                        background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6-15 */
+                        background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+                        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#ef000000',GradientType=0 ); /* IE6-9 */
+                    }
+
+                    &.no-colour {
+                        &:after {
+                            display: none;
+                        }
+                    }
+                }
+
+                h2.title {
+                    text-align: center;
+                    right: 0;
+                    left: 0;
+                    bottom: 25px;
+                    bottom: 50%;
+                    font-size: 14px;
+                    margin-bottom: -10px;
+
+                    @media (min-width:500px) {
+                        font-size: 20px;
+                    }
+
+                    @media (min-width:1200px) {
+                        font-size: 26px;
+                    }
+                }
+            }
+        }
+    }
+
+    .owl-carousel .owl-nav.disabled {
+        display: block !important;
+
+        > div, > button {
+            top: auto;
+            bottom: -65px;
+            left: 50%;
+            margin-left: -35px;
+            border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            background-color: black !important;
+            background-image: url(/themes/tuffstuff/content/lib/hood/images/arrow.jpg) !important;
+            background-size: 30px !important;
+
+            &.owl-next {
+                right: 50%;
+                left: auto;
+                margin-right: -35px;
+                margin-left: auto;
+            }
+
+            &.owl-prev {
+            }
+        }
+    }
+}
