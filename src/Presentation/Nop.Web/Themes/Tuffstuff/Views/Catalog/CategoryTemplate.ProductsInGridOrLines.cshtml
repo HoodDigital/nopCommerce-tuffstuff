@@ -76,28 +76,28 @@
                         </div>
                     </div>
                 }
-                @if (Model.Products.Count > 0)
+                @if (Model.CatalogProductsModel.Products.Count > 0)
                 {
-                    @await Html.PartialAsync("_CatalogSelectors", Model.PagingFilteringContext)
+                    @await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)
                 }
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeFilters, additionalData = Model })
                 <div class="product-filters">
-                    @if (Model.PagingFilteringContext.PriceRangeFilter.Enabled)
+                    @if (Model.CatalogProductsModel.PriceRangeFilter.Enabled)
                     {
-                        @await Html.PartialAsync("_FilterPriceBox", Model.PagingFilteringContext.PriceRangeFilter)
+                        @await Html.PartialAsync("_FilterPriceBox", Model.CatalogProductsModel.PriceRangeFilter)
                     }
-                    @if (Model.PagingFilteringContext.SpecificationFilter.Enabled)
+                    @if (Model.CatalogProductsModel.SpecificationFilter.Enabled)
                     {
-                        @await Html.PartialAsync("_FilterSpecsBox", Model.PagingFilteringContext.SpecificationFilter)
+                        @await Html.PartialAsync("_FilterSpecsBox", Model.CatalogProductsModel.SpecificationFilter)
                     }
                 </div>*@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeProductList, additionalData = Model })
 
-        @if (Model.Products.Count > 0)
+        @if (Model.CatalogProductsModel.Products.Count > 0)
         {
-            <div class="container m-t-lg @(Model.PagingFilteringContext.ViewMode == "list" ? "product-list" : "product-grid")">
+            <div class="container m-t-lg @(Model.CatalogProductsModel.ViewMode == "list" ? "product-list" : "product-grid")">
                 <div class="item-grid">
-                    @foreach (var product in Model.Products)
+                    @foreach (var product in Model.CatalogProductsModel.Products)
                     {
                         <div class="item-box">
                             @await Html.PartialAsync("_ProductBox", product)
@@ -107,9 +107,9 @@
             </div>
         }
         @{
-            var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
+            var pager = Html.Pager(Model.CatalogProductsModel).QueryParam("pagenumber");
         }
-        @if (!pager.IsEmpty())
+        @if (!(await pager.IsEmpty()))
         {
             <div class="pager">
                 @pager

@@ -1,7 +1,9 @@
 ﻿@model ProductDetailsModel
 @using Microsoft.AspNetCore.Http.Extensions
 @using Nop.Core.Domain.Seo;
+@using Nop.Services.Html
 @inject Nop.Core.IWebHelper webHelper
+@inject IHtmlFormatter htmlFormatter
 @inject SeoSettings seoSettings
 @{
     Layout = "_Uncontained";
@@ -26,8 +28,8 @@
     {
         NopHtml.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
         NopHtml.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
-        NopHtml.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(Nop.Core.Html.HtmlHelper.StripTags(Model.MetaDescription)) + "\" />");
-        NopHtml.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.PictureModels.FirstOrDefault()?.ImageUrl + "\" />");
         NopHtml.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + webHelper.GetThisPageUrl(true) + "\" />");
         NopHtml.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
     }
@@ -38,8 +40,8 @@
         NopHtml.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
         NopHtml.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
         NopHtml.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
-        NopHtml.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(Nop.Core.Html.HtmlHelper.StripTags(Model.MetaDescription)) + "\" />");
-        NopHtml.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.PictureModels.FirstOrDefault()?.ImageUrl + "\" />");
         NopHtml.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(true) + "\" />");
     }
 
@@ -54,8 +56,8 @@
                 <div class="col-xs-12 col-sm-8">
                     <div class="gallery">
                         <div class="picture">
-                            <a href="@Model.DefaultPictureModel.FullSizeImageUrl" title="@Model.DefaultPictureModel.Title" id="main-product-img-lightbox-anchor-@Model.Id" class="colorbox">
-                                <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.FullSizeImageUrl" title="@Model.DefaultPictureModel.Title" itemprop="image" id="main-product-img-@Model.Id" />
+                            <a href="@Model.PictureModels.FirstOrDefault()?.FullSizeImageUrl" title="@Model.PictureModels.FirstOrDefault()?.Title" id="main-product-img-lightbox-anchor-@Model.Id" class="colorbox">
+                                <img alt="@Model.PictureModels.FirstOrDefault()?.AlternateText" src="@Model.PictureModels.FirstOrDefault()?.FullSizeImageUrl" title="@Model.PictureModels.FirstOrDefault()?.Title" itemprop="image" id="main-product-img-@Model.Id" />
                             </a>
                         </div>
                     </div>
@@ -116,7 +118,7 @@
                         </div>
                     }
                     <div class="product-collateral">
-                        @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecifications)
+                        @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecificationModel)
                         @await Html.PartialAsync("_ProductTags", Model.ProductTags)
                     </div>
                 </div>

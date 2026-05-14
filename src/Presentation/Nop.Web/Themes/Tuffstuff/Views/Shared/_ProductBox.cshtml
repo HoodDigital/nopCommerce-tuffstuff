@@ -24,8 +24,8 @@
 }
 <div class="product-item" data-productid="@Model.Id">
     <div class="picture">
-        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.DefaultPictureModel.Title" style="background-image:url(@Model.DefaultPictureModel.FullSizeImageUrl)">
-            <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.FullSizeImageUrl" title="@Model.DefaultPictureModel.Title" />
+        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.PictureModels.FirstOrDefault()?.Title" style="background-image:url(@Model.PictureModels.FirstOrDefault()?.FullSizeImageUrl)">
+            <img alt="@Model.PictureModels.FirstOrDefault()?.AlternateText" src="@Model.PictureModels.FirstOrDefault()?.FullSizeImageUrl" title="@Model.PictureModels.FirstOrDefault()?.Title" />
         </a>
         @if (Model.ReviewOverviewModel.AllowCustomerReviews)
         {
@@ -50,11 +50,11 @@
         <span class="price actual-price">@Model.ProductPrice.Price</span>
         @if (Model.ProductPrice.DisplayTaxShippingInfo)
         {
-            var inclTax = workContext.TaxDisplayType == TaxDisplayType.IncludingTax;
+            var inclTax = (await workContext.GetTaxDisplayTypeAsync()) == TaxDisplayType.IncludingTax;
             //tax info is already included in the price (incl/excl tax). that's why we display only shipping info here
             //of course, you can modify appropriate locales to include VAT info there
             <span class="tax-shipping-info">
-                @T(inclTax ? "Products.Price.TaxShipping.InclTax" : "Products.Price.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = Html.GetTopicSeName("shippinginfo") }))
+                @T(inclTax ? "Products.Price.TaxShipping.InclTax" : "Products.Price.TaxShipping.ExclTax", await NopUrl.RouteTopicUrlAsync("shippinginfo"))
             </span>
         }
         @if (!string.IsNullOrEmpty(Model.ProductPrice.BasePricePAngV))

@@ -158,7 +158,7 @@
                             {
                                 <li class="custom-value">
                                     <span class="label">
-                                        @item.Key:
+                                        @item.Name:
                                     </span>
                                     <span class="value">
                                         @(item.Value != null ? item.Value.ToString() : "")
@@ -215,10 +215,10 @@
                 <div class="shipping-info-wrap">
                     <div class="shipping-info">
                         <div class="title">
-                            <strong>@(Model.PickUpInStore ? T("Order.PickupAddress") : T("Order.ShippingAddress"))</strong>
+                            <strong>@(Model.PickupInStore ? T("Order.PickupAddress") : T("Order.ShippingAddress"))</strong>
                         </div>
                         <ul class="info-list">
-                            @if (!Model.PickUpInStore)
+                            @if (!Model.PickupInStore)
                             {
                                 <li class="name">
                                     @Model.ShippingAddress.FirstName @Model.ShippingAddress.LastName
@@ -643,7 +643,7 @@
                     //tax info is already included in the price (incl/excl tax). that's why we display only shipping info here
                     //of course, you can modify appropriate locales to include VAT info there
                     <div class="tax-shipping-info">
-                        @T(inclTax ? "Order.TaxShipping.InclTax" : "Order.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = Html.GetTopicSeName("shippinginfo") }))
+                        @T(inclTax ? "Order.TaxShipping.InclTax" : "Order.TaxShipping.ExclTax", await NopUrl.RouteTopicUrlAsync("shippinginfo"))
                     </div>
                 }
             </div>

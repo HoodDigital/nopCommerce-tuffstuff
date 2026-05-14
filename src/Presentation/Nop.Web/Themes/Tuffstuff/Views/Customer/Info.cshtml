@@ -95,11 +95,9 @@
                             <nop-date-picker asp-day-name="@Html.NameFor(x => x.DateOfBirthDay)"
                                              asp-month-name="@Html.NameFor(x => x.DateOfBirthMonth)"
                                              asp-year-name="@Html.NameFor(x => x.DateOfBirthYear)"
-                                             asp-begin-year="@(DateTime.Now.Year - 110)"
-                                             asp-end-year="@(DateTime.Now.Year)"
-                                             asp-selected-day="@Model.DateOfBirthDay"
-                                             asp-selected-month="@Model.DateOfBirthMonth"
-                                             asp-selected-year="@Model.DateOfBirthYear" />
+                                             asp-begin-year="@(DateTime.Now.AddYears(-110))"
+                                             asp-end-year="@(DateTime.UtcNow)"
+                                             asp-selected-date="@Model.ParseDateOfBirth()" />
                             @if (Model.DateOfBirthRequired)
                             {
                                 <nop-required />
@@ -324,14 +322,7 @@
                         <strong>@T("Account.Options")</strong>
                     </div>
                     <div class="form-fields">
-                        @if (Model.NewsletterEnabled)
-                        {
-                            <div class="inputs">
-                                <label asp-for="Newsletter" asp-postfix=":"></label>
-                                <input asp-for="Newsletter" />
-                                <span asp-validation-for="Newsletter"></span>
-                            </div>
-                        }
+                        @*Newsletter signup: 4.30 single-bool Model.Newsletter replaced in 4.90 by NewsLetterSubscriptions list. Tuffstuff theme block dropped pending re-design as a follow-up; base 4.90 NewsletterSubscriptionsViewComponent / NewsletterBox handles signup elsewhere.*@
                         @if (Model.CustomerAttributes.Count > 0)
                         {
                             @await Html.PartialAsync("_CustomerAttributes", Model.CustomerAttributes)

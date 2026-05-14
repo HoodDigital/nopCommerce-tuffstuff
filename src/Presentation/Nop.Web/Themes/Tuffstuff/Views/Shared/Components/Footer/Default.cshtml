@@ -23,22 +23,10 @@
                     </div>
                     <div class="col-sm-5 text-center-mobile">
                         <ul>
-                            @if (Model.DisplayCustomerInfoFooterItem)
-                            {
-                                <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-                            }
-                            @if (Model.DisplayCustomerOrdersFooterItem)
-                            {
-                                <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
-                            }
-                            @if (Model.DisplayCustomerAddressesFooterItem)
-                            {
-                                <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
-                            }
-                            @if (Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem)
-                            {
-                                <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
-                            }
+                            <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                            <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
+                            <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
+                            <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
                         </ul>
                     </div>
                 </div>
