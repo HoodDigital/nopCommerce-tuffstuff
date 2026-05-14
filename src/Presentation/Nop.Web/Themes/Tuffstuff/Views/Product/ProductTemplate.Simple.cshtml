@@ -45,8 +45,8 @@
         NopHtml.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(true) + "\" />");
     }
 
-    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/themes/tuffstuff/content/lib/jquery-colorbox/query.colorbox-min.js");
-    NopHtml.AddCssFileParts("~/themes/tuffstuff/content/lib/jquery-colorbox/example4/colorbox.css");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/Tuffstuff/Content/lib/jquery-colorbox/query.colorbox-min.js");
+    NopHtml.AddCssFileParts("~/Themes/Tuffstuff/Content/lib/jquery-colorbox/example4/colorbox.css");
 }
 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model })
 <div class="page product-details-page overview">
