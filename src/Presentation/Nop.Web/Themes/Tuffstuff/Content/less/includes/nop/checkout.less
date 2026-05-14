@@ -1,0 +1,404 @@
+﻿﻿﻿body {
+
+    .checkout-page .section {
+        margin: 0 0 30px;
+    }
+
+    .checkout-page .section.order-summary {
+        margin: 100px 0 30px;
+    }
+
+    .checkout-page .cart-options {
+        min-height: 60px;
+        overflow: hidden;
+    }
+
+    .checkout-page .cart-footer {
+        border-top: none;
+    }
+
+    .checkout-page .total-info {
+        margin: 0;
+        border-bottom: none;
+        padding: 5px 20px 10px;
+    }
+
+    .checkout-page .button-1 {
+        display: inline-block;
+        min-width: 140px;
+        border: none;
+        background-color: @theme-light;
+        padding: 10px 30px;
+        text-align: center;
+        font-size: 15px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    .checkout-page .button-1:hover {
+        background-color: @theme-dark;
+    }
+
+    .checkout-page .address-item {
+        width: 350px;
+        max-width: 100%;
+        margin: 0 auto 40px;
+    }
+
+    .checkout-page .address-item ul {
+        margin: 0 0 15px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        color: #444;
+    }
+
+    .checkout-page .address-item li {
+        padding: 5px 0;
+    }
+
+    .checkout-page .address-item li.name {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .enter-address .message-error {
+        margin: 20px 0;
+    }
+
+    .enter-address .edit-address {
+        background-color: #f9f9f9;
+        border-top: 1px solid #e6e6e6;
+        margin: 0 0 30px;
+        padding: 30px 15px;
+    }
+
+    .checkout-page .ship-to-same-address {
+        padding: 30px 0;
+        text-align: center;
+    }
+
+    .checkout-page .ship-to-same-address .selector {
+        margin: 0 0 5px;
+        font-weight: bold;
+        color: #444;
+    }
+
+    .checkout-page .pickup-in-store {
+        text-align: center;
+    }
+
+    .checkout-page .pickup-in-store .selector {
+        margin: 0 0 5px;
+        font-weight: bold;
+        color: #444;
+    }
+
+    .select-pickup-point {
+        text-align: center;
+    }
+
+    .checkout-page .pickup-points-map {
+        min-width: 400px;
+        min-height: 350px;
+        vertical-align: middle;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .shipping-method .method-list,
+    .payment-method .method-list {
+        margin: 0;
+        overflow: hidden;
+        text-align: left;
+        font-size: 0;
+        padding: 0 25px;
+    }
+
+    .shipping-method .method-list li,
+    .payment-method .method-list li {
+        margin: 5px 0 20px 0;
+        font-size: 14px; /*reset zeroing*/
+    }
+
+    .shipping-method .method-list li label,
+    .payment-method .method-list li label {
+        font-size: 13px;
+        font-weight: bold;
+        color: #444;
+        font-size: 20px;
+        margin: 7px 15px 10px;
+        vertical-align: middle;
+    }
+
+    .shipping-method .method-description {
+        margin: 5px 0 0;
+    }
+
+    .payment-method .use-reward-points {
+        margin: 0 0 30px;
+        text-align: center;
+        color: #444;
+    }
+
+    .payment-method .payment-logo {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .payment-method .payment-logo label {
+        display: block;
+        font-size: 0 !important;
+    }
+
+    .payment-method .payment-details {
+        min-width: 180px;
+        display: inline-block;
+        margin: 0 0 0 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .payment-info .info {
+    }
+
+    .payment-info .info tr {
+        display: block;
+        margin: 0 0 15px;
+        font-size: 0;
+    }
+
+    .payment-info .info td {
+        display: inline-block;
+        width: 100% !important;
+        max-width: 400px !important;
+        font-size: 14px; /*reset zeroing*/
+    }
+
+    .payment-info .info td:only-child {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .payment-info .info td input[type="text"] {
+        width: 100% !important;
+    }
+
+    .payment-info .info td input[name="CardCode"] {
+        width: 65px !important;
+    }
+
+    .payment-info .info td select {
+        min-width: 70px;
+    }
+
+    .payment-info .info td:first-child {
+        margin: 0 0 10px;
+    }
+
+    .payment-info .info p {
+        text-align: center;
+    }
+
+    .confirm-order .buttons {
+        padding: 10px 0;
+    }
+
+    .confirm-order .button-1 {
+        font-size: 16px;
+    }
+
+    .order-review-data > div,
+    .order-details-area > div,
+    .shipment-details-area > div {
+        width: 350px;
+        max-width: 100%;
+        margin: 0 auto 40px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        color: #444;
+    }
+
+    .order-review-data li,
+    .order-details-area li,
+    .shipment-details-area li {
+        padding: 3px 0;
+    }
+
+    .order-review-data .title,
+    .order-details-area .title,
+    .shipment-details-area .title {
+        margin: 0 0 5px;
+        padding: 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .order-review-data .title strong,
+    .order-details-area .title strong,
+    .shipment-details-area .title strong {
+        font-weight: 700;
+    }
+
+    .order-review-data .payment-method-info,
+    .order-review-data .shipping-method-info,
+    .order-details-area .payment-method-info,
+    .order-details-area .shipping-method-info {
+        margin-top: 20px;
+    }
+
+    .order-completed .details {
+        margin: 0 0 30px;
+        padding: 30px 15px;
+        text-align: center;
+        color: #444;
+    }
+
+    .order-completed .details div {
+        margin: 5px 0;
+    }
+
+    .order-completed .details strong {
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
+    .order-completed .details a {
+        color: @theme-light;
+    }
+
+    .order-completed .details a:hover {
+        text-decoration: underline;
+    }
+
+    .opc {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.info-list {
+            padding: 10px 25px;
+
+            li {
+                list-style-type: none;
+
+                span.label {
+                    background: @theme-light;
+                    margin-right: 10px;
+                    padding: 5px 10px;
+                    display: inline-block;
+                }
+            }
+        }
+
+        .step-title {
+            margin: 0 0 1px;
+            overflow: hidden;
+            background-color: @theme-light;
+        }
+
+        .allow .step-title {
+            background-color: @theme-color;
+            cursor: pointer;
+        }
+
+        .step-title .number,
+        .step-title .title {
+            float: left;
+            min-height: 40px;
+            padding: 10px 15px;
+            line-height: 20px;
+            font-size: 16px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .allow .step-title .number,
+        .allow .step-title .title {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .step-title .number {
+            width: 42px;
+            border-right: 1px solid #fff;
+            text-align: center;
+        }
+
+        .allow .step-title .number {
+            background-color: @theme-dark;
+        }
+
+        .step {
+            margin: 10px 0;
+            padding: 30px 15px;
+            text-align: center;
+        }
+
+        .section {
+            margin: 0 0 30px;
+        }
+
+        .section > label {
+            display: block;
+            margin: 0 0 10px;
+        }
+
+        input[type="text"],
+        select {
+            max-width: 100%;
+        }
+
+        .buttons {
+            margin-bottom: 0;
+        }
+
+        .back-link {
+            margin: 0 0 10px;
+        }
+
+        .back-link small {
+            display: none;
+        }
+
+        .back-link a {
+            display: inline-block;
+            margin: 0 0 0 -15px;
+            background: url('../images/back-button.png') left center no-repeat;
+            padding: 0 0 0 18px;
+            color: #444;
+        }
+
+        .back-link a:hover {
+            color: @theme-light;
+        }
+
+        .buttons .please-wait {
+            display: block;
+            margin: 10px 0 0;
+            background: none;
+        }
+
+        .section.ship-to-same-address {
+            margin: 0 0 30px;
+            padding: 0;
+        }
+
+        .section.pickup-in-store {
+            margin: 0 0 30px;
+            padding: 0;
+        }
+
+        .payment-info .info tr {
+            text-align: left;
+        }
+
+        .section.order-summary {
+            margin: 0;
+        }
+    }
+}

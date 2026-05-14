@@ -1,0 +1,29 @@
+﻿// inside header .wrap
+.header-upper {
+    background-color: @theme-dark;
+    border-radius: 0;
+    border: 0;
+    min-height: 0;
+    margin-bottom: 0;
+    .transition(all .5s ease-in-out);
+    display: none;
+
+    @media (min-width:768px) {
+        display: block;
+    }
+
+    .navbar-nav {
+        > li {
+            > a {
+                padding: 5px 15px;
+                color: white;
+                font-weight: bold;
+                font-size: 12px;
+
+                i {
+                    width: auto;
+                }
+            }
+        }
+    }
+}

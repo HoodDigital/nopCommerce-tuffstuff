@@ -1,0 +1,22 @@
+﻿// inside header .wrap
+.header-cart {
+    position: relative;
+
+    @media(min-width:@screen-sm) {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+.header-brand {
+    position: relative;
+
+    .header-logo {
+        margin-top: 5px;
+
+        img {
+            max-width: 65%;
+        }
+    }
+}

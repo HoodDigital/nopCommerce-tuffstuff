@@ -1,0 +1,65 @@
+﻿body {
+    .address-list-page,
+    .order-list-page,
+    .address-edit-page {
+        .add-button, .buttons {
+            padding: 15px;
+            margin: 0;
+            margin-top: 15px;
+            background: lighten(@theme-light, 20%);
+        }
+
+        .address-list,
+        .order-list {
+
+            .address-item,
+            .order-item {
+                margin-bottom: 15px;
+            }
+
+            .info {
+                background-color: #f9f9f9;
+                padding: 20px;
+                color: @theme-dark;
+                margin: 0;
+
+                > li {
+                    list-style-type: none;
+                    line-height: 1.3em;
+                }
+            }
+
+            .name {
+                font-size: 16px;
+                margin-bottom: 15px;
+                font-weight: bold;
+            }
+
+            .buttons {
+                padding: 15px;
+                margin: 0;
+                background: #ededed;
+
+                .button-2 {
+                    padding: 4px 13px 4px 13px;
+                    font-size: 12px;
+                    background-color: @theme-light;
+
+                    &:hover {
+                        background-color: darken(@theme-light, 10%);
+                    }
+                }
+            }
+        }
+    }
+
+    .address-edit-page {
+        .message-error {
+            margin: 20px 0;
+        }
+
+        .edit-address-form {
+            padding: 15px;
+        }
+    }
+}

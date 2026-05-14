@@ -1,0 +1,16 @@
+﻿@using Nop.Core
+@using Nop.Services.Helpers
+@using Nop.Web.Framework.UI
+@inject IWorkContext workContext
+@inject IThemeContext themeContext
+@inject IUserAgentHelper userAgentHelper
+@{
+    var themeName = await themeContext.GetWorkingThemeNameAsync();
+    //add main CSS file
+    NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/site.css?version=2");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/lib/bootstrap/dist/js/bootstrap.min.js", excludeFromBundle: true);
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/lib/OwlCarousel2/dist/owl.carousel.js", excludeFromBundle: true);
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/lib/jquery-colorbox/jquery.colorbox-min.js", excludeFromBundle: true);
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/lib/hood/dist/js/app.packaged.js", excludeFromBundle: true);
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/js/site.packaged.js", excludeFromBundle: true);
+}

@@ -1,0 +1,34 @@
+﻿@model TopicModel
+@{
+    Layout = "_Root";
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+<div class="page-title padded features title-block text-center-mobile">
+    <div class="background"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>
+                    Our Shows
+                </h1>
+                <div class="category-description">
+                    <p>
+                        Please find a list of Agility Shows we will be attending this year.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="large-padded right-fade">
+    <div class="section-bg" style="background-image:url(/themes/tuffstuff/content/images/new/about/storm1.jpg)"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                @Html.Raw(Model.Body)
+            </div>
+        </div>
+    </div>
+</section>

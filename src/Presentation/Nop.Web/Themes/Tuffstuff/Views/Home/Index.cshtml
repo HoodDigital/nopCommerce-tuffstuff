@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "_Root";
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+<div class="">
+    <section class="large-padded top-fade">
+        <div class="section-bg" style="background-image:url(/themes/tuffstuff/content/images/new/leads.jpg)"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center m-b-lg">
+                    <h4>
+                        Welcome to TuffStuff<br />
+                        <span class="font-lg">YOUR NAME IN DOG LEADS</span>
+                    </h4>
+                    <p>
+                        TuffStuff dog leads are made of Polyester CushionWeb or Soft Tactile Webbing which provides a comfortable grip for the handler and eliminates sore hands from pulling dogs. The inner core is made of polypropylene, giving you a strong and durable lead. For peace of mind all our leads and embroidery are colourfast to ensure easy cleaning.
+                    </p>
+                </div>
+            </div>
+            <div class="categories">
+                @await Component.InvokeAsync("HomepageCategories")
+            </div>
+        </div>
+    </section>
+</div>
+<section class="half-padded">
+    <div class="container">
+        @await Component.InvokeAsync("HomepageProducts")
+    </div>
+</section>

@@ -1,0 +1,35 @@
+﻿﻿body {
+    @import "header/admin-header-links";
+    @import "header/flyout-cart";
+
+    div.header {
+        position: fixed;
+        width: 100%;
+        z-index: 99;
+        top: 0;
+        background: white;
+        box-shadow: 0 0 15px fade(black, 25%);
+
+        &:before, &:after {
+            content: " ";
+            display: table;
+        }
+
+        &:after {
+            clear: both;
+        }
+
+        @import "header/header-upper";
+        @import "header/header-brand";
+        @import "header/header-lower";
+        @import "header/main-menu";
+    }
+
+    @import "header/mobile";
+
+    &.mobile-menu-open {
+        nav.mobile {
+            .transform(translateX(0%));
+        }
+    }
+}
