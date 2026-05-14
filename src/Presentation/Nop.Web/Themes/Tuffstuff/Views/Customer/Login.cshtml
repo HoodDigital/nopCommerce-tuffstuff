@@ -11,7 +11,7 @@
     NopHtml.AppendPageCssClassParts("html-login-page");
 
     //register URL with return URL (if specified)
-    var registerUrl = Url.RouteUrl("Register", null, webHelper.CurrentRequestProtocol);
+    var registerUrl = Url.RouteUrl("Register", null, webHelper.GetCurrentRequestProtocol());
     if (!string.IsNullOrEmpty(this.Context.Request.Query["returnUrl"]))
     {
         registerUrl = webHelper.ModifyQueryString(registerUrl, "returnurl", this.Context.Request.Query["returnUrl"]);
