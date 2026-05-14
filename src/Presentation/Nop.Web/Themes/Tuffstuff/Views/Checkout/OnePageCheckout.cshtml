@@ -5,15 +5,15 @@
     Layout = "_ColumnsOne";
 
     //scripts
-    Html.AddScriptParts(ResourceLocation.Footer, "~/js/public.accordion.js");
-    Html.AddScriptParts(ResourceLocation.Footer, "~/js/public.onepagecheckout.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/js/public.accordion.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/js/public.onepagecheckout.js");
 
     var storeLocation = webHelper.GetStoreLocation();
 
     //title
-    Html.AddTitleParts(T("PageTitle.Checkout").Text);
+    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
     //page class
-    Html.AppendPageCssClassParts("html-checkout-page");
+    NopHtml.AppendPageCssClassParts("html-checkout-page");
 }
 
 @{

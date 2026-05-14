@@ -15,7 +15,7 @@
                 <li><a href="@Url.RouteUrl("Login")" class="ico-login">@T("Account.Login")</a></li>
             }
         </ul>
-        <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav float-end">
             <li><a asp-action="About" asp-controller="Tuffstuff" class="ico-account">About Us</a></li>
             <li><a asp-action="ContactUs" asp-controller="Common" class="ico-account">Contact Us</a></li>
             @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksAfter })

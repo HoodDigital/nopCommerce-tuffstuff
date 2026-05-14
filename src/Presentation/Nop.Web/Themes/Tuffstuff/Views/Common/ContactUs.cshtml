@@ -3,14 +3,14 @@
     Layout = "_ColumnsOne";
 
     //title
-    Html.AddTitleParts(T("PageTitle.ContactUs").Text);
+    NopHtml.AddTitleParts(T("PageTitle.ContactUs").Text);
     //page class
-    Html.AppendPageCssClassParts("html-contact-page");
+    NopHtml.AppendPageCssClassParts("html-contact-page");
 }
 <div class="page contact-page">
     <div class="page-title">
         <h1>@T("PageTitle.ContactUs")</h1>
-        <div class="col-sm-6 text-right text-center-mobile">
+        <div class="col-sm-6 text-end text-center-mobile">
             <p>
 
                 Tuffstuff Ltd.<br />
@@ -19,7 +19,7 @@
 
             </p>
         </div>
-        <div class="col-sm-6 text-left text-center-mobile">
+        <div class="col-sm-6 text-start text-center-mobile">
             <p>
                 <i class="fa fa-envelope m-r-xs"></i><strong>sales@tuffstuff-ltd.co.uk</strong><br />
                 <i class="fa fa-phone m-r-xs"></i>Nige <strong>07973 346 428 </strong> or<br />
