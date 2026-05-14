@@ -15167,14 +15167,14 @@ body .product-grid .item-grid .item-box .product-rating-box {
 }
 body .category-grid .item-grid .item-box .product-rating-box .rating,
 body .product-grid .item-grid .item-box .product-rating-box .rating {
-  background: url('/themes/tuffstuff/content/images/rating1.png') repeat-x;
+  background: url('/Themes/Tuffstuff/Content/images/rating1.png') repeat-x;
   width: 95px;
   height: 14px;
   margin: auto;
 }
 body .category-grid .item-grid .item-box .product-rating-box .rating div,
 body .product-grid .item-grid .item-box .product-rating-box .rating div {
-  background: url('/themes/tuffstuff/content/images/rating2.png') repeat-x;
+  background: url('/Themes/Tuffstuff/Content/images/rating2.png') repeat-x;
   height: 14px;
 }
 body .category-grid .item-grid .item-box h2.title,
@@ -15343,7 +15343,7 @@ body .owl-carousel .owl-nav.disabled > button {
   width: 30px;
   height: 30px;
   background-color: black !important;
-  background-image: url(/themes/tuffstuff/content/lib/hood/images/arrow.jpg) !important;
+  background-image: url(/Themes/Tuffstuff/Content/lib/hood/images/arrow.jpg) !important;
   background-size: 30px !important;
 }
 body .owl-carousel .owl-nav.disabled > div.owl-next,
@@ -15430,13 +15430,13 @@ body .owl-carousel .owl-nav.disabled > button.owl-next {
   margin: 8px 0;
 }
 .product-reviews-overview .product-review-box .rating {
-  background: url('/themes/tuffstuff/content/images/rating1.png') repeat-x;
+  background: url('/Themes/Tuffstuff/Content/images/rating1.png') repeat-x;
   width: 95px;
   height: 14px;
   margin: auto;
 }
 .product-reviews-overview .product-review-box .rating div {
-  background: url('/themes/tuffstuff/content/images/rating2.png') repeat-x;
+  background: url('/Themes/Tuffstuff/Content/images/rating2.png') repeat-x;
   height: 14px;
 }
 .product-reviews-overview .product-review-links a {
@@ -15782,7 +15782,7 @@ body .owl-carousel .owl-nav.disabled > button.owl-next {
   border-radius: 5px;
   border: 1px solid #25b7d3;
   padding: 10px 15px 10px 55px;
-  background-image: url(/themes/tuffstuff/content/images/question.png);
+  background-image: url(/Themes/Tuffstuff/Content/images/question.png);
   background-position: 15px 50%;
   background-size: 20px 20px;
   background-repeat: no-repeat;
@@ -15799,7 +15799,7 @@ body .owl-carousel .owl-nav.disabled > button.owl-next {
   color: #664c00;
   background: #ffe499;
   border: 1px solid #CC9700;
-  background-image: url(/themes/tuffstuff/content/images/alert.png);
+  background-image: url(/Themes/Tuffstuff/Content/images/alert.png);
   background-position: 15px 50%;
   background-size: 20px 20px;
   background-repeat: no-repeat;
@@ -17147,7 +17147,7 @@ body .page-title {
   padding: 30px 0;
   background-color: #000000;
   color: #ffffff;
-  background-image: url(/themes/tuffstuff/content/images/new/leads-wide.jpg);
+  background-image: url(/Themes/Tuffstuff/Content/images/new/leads-wide.jpg);
   position: relative;
   text-align: center;
 }
@@ -17213,7 +17213,7 @@ body div#bar-notification span.close {
   background: white;
   width: 20px;
   height: 20px;
-  background-image: url(/themes/tuffstuff/content/images/close.png);
+  background-image: url(/Themes/Tuffstuff/Content/images/close.png);
   background-size: 10px;
   background-position: center;
   background-repeat: no-repeat;
