@@ -10,6 +10,11 @@ namespace Nop.Plugin.Payments.PayPalCommerce.Components.Public;
 /// <summary>
 /// Represents the view component to display PayPal logo in the public store
 /// </summary>
+// OPS-114 — name explicitly so this does not shadow the core "Logo" view component
+// (Nop.Web.Components.LogoViewComponent). The theme invokes the core logo by name
+// (@Component.InvokeAsync("Logo")); this plugin invokes its own by type, so a distinct
+// name resolves the ambiguity without affecting the widget-zone rendering.
+[ViewComponent(Name = "PayPalCommerceLogo")]
 public class LogoViewComponent : NopViewComponent
 {
     #region Fields
