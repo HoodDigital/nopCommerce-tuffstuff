@@ -16407,7 +16407,7 @@ body .checkout-page .button-1 {
   display: inline-block;
   min-width: 140px;
   border: none;
-  background-color: #d6d6d6;
+  background-color: #20A55E;
   padding: 10px 30px;
   text-align: center;
   font-size: 15px;
@@ -16415,7 +16415,7 @@ body .checkout-page .button-1 {
   text-transform: uppercase;
 }
 body .checkout-page .button-1:hover {
-  background-color: #5B0000;
+  background-color: #1b8b4f;
 }
 body .checkout-page .address-item {
   width: 350px;
@@ -18301,6 +18301,54 @@ body div.copyright i {
   body footer .copyright .socials {
     float: right;
   }
+}
+
+/* ── OPS-114: clean checkout confirm page (addresses + intro) ─────────────── */
+.confirm-intro {
+  background: #fff;
+  border-left: 4px solid #20A55E;
+  padding: 16px 20px;
+  margin: 0 0 20px;
+  border-radius: 4px;
+}
+.confirm-intro-title { margin: 0 0 6px; font-size: 20px; color: #5B0000; }
+.confirm-intro p { margin: 0; color: #444; }
+
+.review-clean { display: flex; flex-wrap: wrap; gap: 24px; margin: 0 0 10px; }
+.review-clean .review-col { flex: 1 1 280px; min-width: 0; }
+.review-clean .review-block { margin: 0 0 20px; background: #f9f9f9; border-radius: 4px; overflow: hidden; }
+.review-clean .review-block .title {
+  background: #5B0000; color: #fff; font-size: 15px; font-weight: bold;
+  margin: 0; padding: 10px 16px;
+}
+.review-clean .address-box { padding: 14px 16px; }
+.review-clean .address-box p { margin: 0 0 4px; color: #333; line-height: 1.45; }
+.review-clean .address-box p:last-child { margin-bottom: 0; }
+.review-clean .address-box p.name { font-weight: bold; font-size: 16px; color: #222; margin-bottom: 6px; }
+.review-clean .address-box p.muted { color: #777; font-size: 13px; }
+.review-clean .address-box .label { color: #777; }
+.review-clean .address-box .value { font-weight: bold; }
+
+/* OPS-114: contain checkout content to the site width (full-width heroes stay) */
+body .checkout-data {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+/* Strip the grey shadowed boxes from across the one-page checkout */
+body .checkout-page .section {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+/* Tighten the oversized gap above the order summary */
+body .checkout-page .section.order-summary {
+  margin: 30px 0;
+}
+/* Keep the sticky header above PayPal's inline card-fields iframe (z=100),
+   while staying below the mobile nav (999) and modal overlays. */
+body div.header {
+  z-index: 500;
 }
 
 /*# sourceMappingURL=site.css.map */
