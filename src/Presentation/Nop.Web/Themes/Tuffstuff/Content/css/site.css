@@ -18351,14 +18351,4 @@ body div.header {
   z-index: 500;
 }
 
-/* OPS-176: suppress the nopCommerce 4.90 "Menus" dropdown that core _Root.cshtml
-   renders above the header (<div class="header-menu"><MainMenu/></div>). This
-   theme has no styling for its .menu-dropdown markup, so it renders as an
-   unstyled category list, duplicating the real Tuffstuff nav (nav.main). The
-   live 4.30 site never had it. Mobile (nav.mobile) and main (nav.main) navs are
-   separate elements and unaffected. */
-body .header-menu {
-  display: none;
-}
-
 /*# sourceMappingURL=site.css.map */

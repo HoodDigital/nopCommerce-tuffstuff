@@ -1,0 +1,35 @@
+@{
+    Layout = "_Root.Head";
+}
+@*
+    OPS-176: Tuffstuff override of core _Root.cshtml.
+    Removes two things core 4.90 _Root renders that this theme already handles
+    or doesn't want:
+      - AdminHeaderLinksViewComponent — the theme's _Header already renders it,
+        so the core call here produced a *duplicate* admin bar.
+      - the <div class="header-menu"> + MainMenuViewComponent (the new 4.90
+        "Menus" feature) — redundant with the Tuffstuff nav (nav.main) and
+        unstyled in this theme. The live 4.30 site never had it.
+    Everything else matches core _Root verbatim.
+*@
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@{ await Html.RenderPartialAsync("_Notifications"); }
+@{ await Html.RenderPartialAsync("_JavaScriptDisabledWarning"); }
+<div class="master-wrapper-page">
+    @{ await Html.RenderPartialAsync("_Header"); }
+    <main class="master-wrapper-content" id="main">
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore })
+
+        @if (IsSectionDefined("Breadcrumb"))
+        {
+            @RenderSection("Breadcrumb")
+        }
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter })
+    </main>
+    @await Component.InvokeAsync(typeof(FooterViewComponent))
+</div>
+@await Component.InvokeAsync(typeof(EuCookieLawViewComponent))
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })
