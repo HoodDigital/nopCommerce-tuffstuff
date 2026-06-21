@@ -1,5 +1,5 @@
-@import '../lib/owlcarousel2/dist/assets/owl.carousel.min.css';
-@import '../lib/owlcarousel2/dist/assets/owl.theme.default.min.css';
+@import '/Themes/Tuffstuff/Content/lib/owlcarousel2/dist/assets/owl.carousel.min.css';
+@import '/Themes/Tuffstuff/Content/lib/owlcarousel2/dist/assets/owl.theme.default.min.css';
 @font-face {
   font-family: 'Source Sans Pro';
   font-style: normal;
@@ -16688,7 +16688,7 @@ body .opc .back-link small {
 body .opc .back-link a {
   display: inline-block;
   margin: 0 0 0 -15px;
-  background: url('./includes/images/back-button.png') left center no-repeat;
+  background: url('../images/back-button.png') left center no-repeat;
   padding: 0 0 0 18px;
   color: #444;
 }
