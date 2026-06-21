@@ -1,0 +1,110 @@
+@using System.Linq
+@using Nop.Services.Orders
+@model ShoppingCartModel.OrderReviewDataModel
+@*
+    Tuffstuff override of the stock _OrderReviewData partial.
+    Renders billing/shipping addresses, payment and shipping method as clean
+    blocks (no bulleted info-list, empty fields skipped) instead of the stock
+    <ul class="info-list"> which rendered every address field — including blanks
+    — as a bullet. Widget zones + custom values are preserved.
+*@
+@if (Model.Display)
+{
+    <div class="order-review-data review-clean">
+        <div class="review-col billing-col">
+            <div class="review-block billing-info">
+                <h2 class="title">@T("Order.BillingAddress")</h2>
+                <div class="address-box">
+                    <p class="name">@Model.BillingAddress.FirstName @Model.BillingAddress.LastName</p>
+                    @if (Model.BillingAddress.CompanyEnabled && !string.IsNullOrWhiteSpace(Model.BillingAddress.Company))
+                    {
+                        <p class="company">@Model.BillingAddress.Company</p>
+                    }
+                    @foreach (var item in Model.BillingAddress.AddressFields.Where(f => !string.IsNullOrWhiteSpace(f.Value)))
+                    {
+                        <p class="addr-line @item.Key.ToString().ToLower()">@item.Value</p>
+                    }
+                    @if (Model.BillingAddress.PhoneEnabled && !string.IsNullOrWhiteSpace(Model.BillingAddress.PhoneNumber))
+                    {
+                        <p class="muted">@T("Order.Phone"): @Model.BillingAddress.PhoneNumber</p>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.BillingAddress.Email))
+                    {
+                        <p class="muted">@Model.BillingAddress.Email</p>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.BillingAddress.FormattedCustomAddressAttributes))
+                    {
+                        <div class="custom-attributes-view">@Html.Raw(Model.BillingAddress.FormattedCustomAddressAttributes)</div>
+                    }
+                    @await Html.PartialAsync("_OrderCustomValues", Model.CustomValues?.GetValuesByDisplayLocation(CustomValueDisplayLocation.BillingAddress))
+                    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryBillingAddress, additionalData = Model })
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.PaymentMethod))
+            {
+                <div class="review-block payment-method-info">
+                    <h2 class="title">@T("Order.Payment")</h2>
+                    <div class="address-box">
+                        <p><span class="label">@T("Order.Payment.Method"):</span> <span class="value">@Model.PaymentMethod</span></p>
+                        @await Html.PartialAsync("_OrderCustomValues", Model.CustomValues?.GetValuesByDisplayLocation(CustomValueDisplayLocation.Payment))
+                        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryPaymentMethodInfo, additionalData = Model })
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.IsShippable)
+        {
+            <div class="review-col shipping-col">
+                <div class="review-block shipping-info">
+                    <h2 class="title">@(Model.SelectedPickupInStore ? T("Order.PickupAddress") : T("Order.ShippingAddress"))</h2>
+                    <div class="address-box">
+                        @if (!Model.SelectedPickupInStore)
+                        {
+                            <p class="name">@Model.ShippingAddress.FirstName @Model.ShippingAddress.LastName</p>
+                            @if (Model.ShippingAddress.CompanyEnabled && !string.IsNullOrWhiteSpace(Model.ShippingAddress.Company))
+                            {
+                                <p class="company">@Model.ShippingAddress.Company</p>
+                            }
+                            @foreach (var item in Model.ShippingAddress.AddressFields.Where(f => !string.IsNullOrWhiteSpace(f.Value)))
+                            {
+                                <p class="addr-line @item.Key.ToString().ToLower()">@item.Value</p>
+                            }
+                            @if (Model.ShippingAddress.PhoneEnabled && !string.IsNullOrWhiteSpace(Model.ShippingAddress.PhoneNumber))
+                            {
+                                <p class="muted">@T("Order.Phone"): @Model.ShippingAddress.PhoneNumber</p>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.ShippingAddress.Email))
+                            {
+                                <p class="muted">@Model.ShippingAddress.Email</p>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.ShippingAddress.FormattedCustomAddressAttributes))
+                            {
+                                <div class="custom-attributes-view">@Html.Raw(Model.ShippingAddress.FormattedCustomAddressAttributes)</div>
+                            }
+                            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryShippingAddress, additionalData = Model })
+                        }
+                        else
+                        {
+                            @foreach (var item in Model.PickupAddress.AddressFields.Where(f => !string.IsNullOrWhiteSpace(f.Value)))
+                            {
+                                <p class="addr-line @item.Key.ToString().ToLower()">@item.Value</p>
+                            }
+                        }
+                        @await Html.PartialAsync("_OrderCustomValues", Model.CustomValues?.GetValuesByDisplayLocation(CustomValueDisplayLocation.ShippingAddress))
+                    </div>
+                </div>
+
+                <div class="review-block shipping-method-info">
+                    <h2 class="title">@T("Order.Shipping")</h2>
+                    <div class="address-box">
+                        <p><span class="label">@T("Order.Shipping.Name"):</span> <span class="value">@Model.ShippingMethod</span></p>
+                        @await Html.PartialAsync("_OrderCustomValues", Model.CustomValues?.GetValuesByDisplayLocation(CustomValueDisplayLocation.Shipping))
+                        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.OrderSummaryShippingMethodInfo, additionalData = Model })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

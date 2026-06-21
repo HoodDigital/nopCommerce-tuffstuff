@@ -11,6 +11,11 @@
         <h1>@T("Checkout.ConfirmYourOrder")</h1>
     </div>
     <div class="page-body checkout-data">
+        @* OPS-114: explanatory intro so the confirm step isn't a bare button *@
+        <div class="confirm-intro">
+            <h2 class="confirm-intro-title">Almost there — please review your order</h2>
+            <p>Check your items, delivery address and payment method below. When everything looks right, press <strong>Confirm &amp; place order</strong> to complete your purchase. Your card / PayPal won't be charged until you confirm.</p>
+        </div>
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.CheckoutConfirmTop, additionalData = Model })
         <div class="section confirm-order">
             <form asp-controller="PayPalCommercePublic" asp-action="ConfirmOrderPost" method="post" id="confirm-order-form">
